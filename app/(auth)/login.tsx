@@ -8,7 +8,7 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useAuthStore } from "@/stores/authStore";
 import { colors } from "@/constants/theme";
 
@@ -17,13 +17,25 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { signInWithEmail, loading } = useAuthStore();
+  const router = useRouter();
 
   const handleLogin = async () => {
     try {
       setError("");
       await signInWithEmail(email, password);
-    } catch (err: any) {
-      setError(err.message || "Failed to sign in");
+      router.replace("/");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Failed to sign in";
+      setError(message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await useAuthStore.getState().signInWithGoogle();
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Google sign-in failed";
+      setError(message);
     }
   };
 
@@ -48,7 +60,7 @@ export default function LoginScreen() {
 
         {error ? (
           <View style={{ backgroundColor: colors.deepBurgundy + "33", padding: 12, borderRadius: 8, marginBottom: 16 }}>
-            <Text style={{ color: "#FF6B6B", fontSize: 14 }}>{error}</Text>
+            <Text style={{ color: colors.error, fontSize: 14 }}>{error}</Text>
           </View>
         ) : null}
 
@@ -116,7 +128,7 @@ export default function LoginScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => useAuthStore.getState().signInWithGoogle()}
+            onPress={handleGoogleSignIn}
             style={{
               backgroundColor: colors.lighterIndigo,
               borderRadius: 12,

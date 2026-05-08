@@ -5,9 +5,18 @@ import { ZODIAC_SIGNS, colors } from "@/constants/theme";
 import type { ZodiacSign } from "@/constants/theme";
 
 export default function SunSignScreen() {
-  const { profile } = useAuthStore();
+  const { profile, updateProfile } = useAuthStore();
   const router = useRouter();
-  const sunSign = (profile?.sun_sign || "leo") as ZodiacSign;
+  const sunSign = profile?.sun_sign as ZodiacSign | undefined;
+
+  if (!sunSign) {
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.deepDark, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ color: colors.gray[400], fontSize: 16 }}>Loading...</Text>
+      </View>
+    );
+  }
+
   const signData = ZODIAC_SIGNS[sunSign];
 
   return (
@@ -65,7 +74,10 @@ export default function SunSignScreen() {
         </View>
 
         <TouchableOpacity
-          onPress={() => router.replace("/(tabs)")}
+          onPress={async () => {
+            await updateProfile({ onboarding_complete: true });
+            router.replace("/(tabs)");
+          }}
           style={{
             width: "100%",
             backgroundColor: colors.sacredGold,

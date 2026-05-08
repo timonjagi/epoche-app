@@ -10,6 +10,10 @@ export const colors = {
   deepBurgundy: "#8B0000",
   pureGold: "#FFD700",
   white: "#FFFFFF",
+  error: "#FF6B6B",
+  fire: "#FF6B35",
+  air: "#87CEEB",
+  water: "#4682B4",
   gray: {
     100: "#F5F5F5",
     200: "#E5E5E5",
@@ -64,7 +68,7 @@ export const TRANSIT_DESCRIPTIONS: Record<TransitType, string> = {
   mercury_retrograde:
     "Mercury appears to move backward, disrupting communication, technology, and travel — a time for reflection.",
   solar_eclipse:
-    "A solar eclipse near your natal planets signals powerful new beginnings andCourse corrections.",
+    "A solar eclipse near your natal planets signals powerful new beginnings and course corrections.",
   lunar_eclipse:
     "A lunar eclipse near your natal planets brings emotional revelations and completions.",
   full_moon: "Full Moon illuminates what was hidden, bringing culmination and harvest.",

@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { supabase } from "@/lib/supabase";
 import type { Profile } from "@/types";
+import type { Session } from "@supabase/supabase-js";
 
 interface AuthState {
-  session: any | null;
+  session: Session | null;
   profile: Profile | null;
   loading: boolean;
   initialized: boolean;
@@ -14,8 +15,10 @@ interface AuthState {
   signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
   updateProfile: (updates: Partial<Profile>) => Promise<void>;
-  setSession: (session: any) => void;
+  setSession: (session: Session) => void;
 }
+
+let authSubscription: { unsubscribe: () => void } | null = null;
 
 export const useAuthStore = create<AuthState>((set, get) => ({
   session: null,
@@ -39,7 +42,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         set({ session: null, profile: null, loading: false, initialized: true });
       }
 
-      supabase.auth.onAuthStateChange(async (event, session) => {
+      if (authSubscription) {
+        authSubscription.unsubscribe();
+      }
+      
+      const { data } = supabase.auth.onAuthStateChange(async (_event, session) => {
         if (session?.user) {
           const { data: profile } = await supabase
             .from("profiles")
@@ -51,6 +58,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
           set({ session: null, profile: null, loading: false });
         }
       });
+      authSubscription = data.subscription;
     } catch {
       set({ loading: false, initialized: true });
     }

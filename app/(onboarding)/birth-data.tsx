@@ -73,10 +73,9 @@ export default function BirthDataScreen() {
       birth_latitude: selectedCity?.lat ?? null,
       birth_longitude: selectedCity?.lng ?? null,
       sun_sign: sunSign,
-      onboarding_complete: true,
     });
 
-    router.replace("/(tabs)");
+    router.replace("/(onboarding)/sun-sign");
   };
 
   return (

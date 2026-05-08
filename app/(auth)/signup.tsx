@@ -8,7 +8,7 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useAuthStore } from "@/stores/authStore";
 import { colors } from "@/constants/theme";
 
@@ -18,6 +18,7 @@ export default function SignupScreen() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { signUpWithEmail, loading } = useAuthStore();
+  const router = useRouter();
 
   const handleSignup = async () => {
     try {
@@ -31,8 +32,10 @@ export default function SignupScreen() {
         return;
       }
       await signUpWithEmail(email, password, displayName);
-    } catch (err: any) {
-      setError(err.message || "Failed to create account");
+      router.replace("/");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Failed to create account";
+      setError(message);
     }
   };
 
@@ -57,7 +60,7 @@ export default function SignupScreen() {
 
         {error ? (
           <View style={{ backgroundColor: colors.deepBurgundy + "33", padding: 12, borderRadius: 8, marginBottom: 16 }}>
-            <Text style={{ color: "#FF6B6B", fontSize: 14 }}>{error}</Text>
+            <Text style={{ color: colors.error, fontSize: 14 }}>{error}</Text>
           </View>
         ) : null}
 

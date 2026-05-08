@@ -73,8 +73,8 @@ export default function ProfileScreen() {
         onPress={signOut}
         style={{ backgroundColor: colors.deepBurgundy + "30", borderRadius: 12, padding: 16, flexDirection: "row", justifyContent: "center", alignItems: "center" }}
       >
-        <LogOut color="#FF6B6B" size={18} />
-        <Text style={{ color: "#FF6B6B", fontSize: 15, fontWeight: "600", marginLeft: 8 }}>Sign Out</Text>
+        <LogOut color={colors.error} size={18} />
+        <Text style={{ color: colors.error, fontSize: 15, fontWeight: "600", marginLeft: 8 }}>Sign Out</Text>
       </TouchableOpacity>
     </ScrollView>
   );

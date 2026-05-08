@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { useAuthStore } from "@/stores/authStore";
 import { colors, ZODIAC_SIGNS, TRANSIT_LABELS } from "@/constants/theme";
 import type { ZodiacSign, TransitType } from "@/constants/theme";
+import { calculateMoonPhase, getMoonPhaseName } from "@/lib/astrology";
 
 function getGreeting(): string {
   const hour = new Date().getHours();
@@ -11,16 +12,44 @@ function getGreeting(): string {
   return "Good evening";
 }
 
-function getMoonPhaseEmoji(): string {
-  const phase = new Date().getDate() % 8;
-  const emojis = ["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"];
-  return emojis[phase];
-}
+const MOON_EMOJIS: Record<string, string> = {
+  newMoon: "🌑",
+  waxingCrescent: "🌒",
+  firstQuarter: "🌓",
+  waxingGibbous: "🌔",
+  fullMoon: "🌕",
+  waningGibbous: "🌖",
+  lastQuarter: "🌗",
+  waningCrescent: "🌘",
+};
 
 export default function HomeScreen() {
   const { profile } = useAuthStore();
   const router = useRouter();
-  const sunSign = (profile?.sun_sign || "leo") as ZodiacSign;
+  const sunSign = profile?.sun_sign as ZodiacSign | undefined;
+  const moonPhase = getMoonPhaseName(calculateMoonPhase(new Date()));
+  const moonEmoji = MOON_EMOJIS[moonPhase] || "🌙";
+
+  if (!sunSign) {
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.deepDark, justifyContent: "center", alignItems: "center", padding: 24 }}>
+        <Text style={{ fontSize: 48, marginBottom: 16 }}>✦</Text>
+        <Text style={{ fontSize: 20, fontWeight: "700", color: colors.warmOffWhite, marginBottom: 8, textAlign: "center" }}>
+          Set your birth data
+        </Text>
+        <Text style={{ fontSize: 14, color: colors.gray[400], textAlign: "center", marginBottom: 24 }}>
+          Enter your birth details to see personalized transit windows and zodiac insights.
+        </Text>
+        <TouchableOpacity
+          onPress={() => router.replace("/(onboarding)/birth-data")}
+          style={{ backgroundColor: colors.sacredGold, borderRadius: 12, paddingVertical: 14, paddingHorizontal: 32 }}
+        >
+          <Text style={{ color: colors.deepDark, fontWeight: "700", fontSize: 16 }}>Get Started</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   const signData = ZODIAC_SIGNS[sunSign];
 
   return (
@@ -46,7 +75,7 @@ export default function HomeScreen() {
           <Text style={{ color: colors.gray[400], fontSize: 13 }}>{signData.dates}</Text>
         </View>
         <View style={{ alignItems: "center" }}>
-          <Text style={{ fontSize: 32 }}>{getMoonPhaseEmoji()}</Text>
+          <Text style={{ fontSize: 32 }}>{moonEmoji}</Text>
           <Text style={{ color: colors.mutedGold, fontSize: 11 }}>Moon</Text>
         </View>
       </View>

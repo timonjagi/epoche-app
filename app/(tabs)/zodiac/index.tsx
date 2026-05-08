@@ -1,14 +1,14 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-import { colors, ZODIAC_SIGNS, TRANSIT_LABELS } from "@/constants/theme";
+import { colors, ZODIAC_SIGNS } from "@/constants/theme";
 import type { ZodiacSign, Element } from "@/constants/theme";
 import { useAuthStore } from "@/stores/authStore";
 
 const ELEMENT_COLORS: Record<Element, string> = {
-  fire: "#FF6B35",
-  earth: "#4A5D23",
-  air: "#87CEEB",
-  water: "#4682B4",
+  fire: colors.fire,
+  earth: colors.earthyGreen,
+  air: colors.air,
+  water: colors.water,
 };
 
 const SIGN_ORDER: ZodiacSign[] = [

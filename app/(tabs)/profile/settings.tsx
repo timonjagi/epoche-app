@@ -8,7 +8,7 @@ import { ArrowLeft, Moon, Shield, Info, Trash2 } from "lucide-react-native";
 export default function SettingsScreen() {
   const router = useRouter();
   const { theme, setTheme } = useSettingsStore();
-  const { signOut } = useAuthStore();
+  const { profile, signOut } = useAuthStore();
 
   const handleDeleteAccount = () => {
     Alert.alert(
@@ -16,7 +16,22 @@ export default function SettingsScreen() {
       "This will permanently delete your account and all data. This action cannot be undone.",
       [
         { text: "Cancel", style: "cancel" },
-        { text: "Delete", style: "destructive", onPress: signOut },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: async () => {
+            if (profile?.id) {
+              await fetch(`${process.env.EXPO_PUBLIC_SUPABASE_URL}/rest/v1/profiles?id=eq.${profile.id}`, {
+                method: "DELETE",
+                headers: {
+                  apikey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || "",
+                  Authorization: `Bearer ${(await useAuthStore.getState().session?.access_token) ?? ""}`,
+                },
+              }).catch(() => {});
+            }
+            await signOut();
+          },
+        },
       ]
     );
   };
@@ -88,8 +103,8 @@ export default function SettingsScreen() {
           justifyContent: "center",
         }}
       >
-        <Trash2 color="#FF6B6B" size={18} />
-        <Text style={{ color: "#FF6B6B", fontSize: 15, fontWeight: "600", marginLeft: 8 }}>
+        <Trash2 color={colors.error} size={18} />
+        <Text style={{ color: colors.error, fontSize: 15, fontWeight: "600", marginLeft: 8 }}>
           Delete Account
         </Text>
       </TouchableOpacity>

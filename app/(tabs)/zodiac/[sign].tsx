@@ -4,10 +4,10 @@ import { colors, ZODIAC_SIGNS, TRANSIT_DESCRIPTIONS } from "@/constants/theme";
 import type { ZodiacSign, Element, Quality } from "@/constants/theme";
 
 const ELEMENT_COLORS: Record<Element, string> = {
-  fire: "#FF6B35",
-  earth: "#4A5D23",
-  air: "#87CEEB",
-  water: "#4682B4",
+  fire: colors.fire,
+  earth: colors.earthyGreen,
+  air: colors.air,
+  water: colors.water,
 };
 
 const ELEMENT_DESCRIPTIONS: Record<Element, string> = {

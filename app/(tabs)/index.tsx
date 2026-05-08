@@ -71,7 +71,7 @@ export default function HomeScreen() {
 
       <View style={{ backgroundColor: colors.cosmicIndigo, borderRadius: 16, padding: 20, marginBottom: 20 }}>
         <Text style={{ color: colors.sacredGold, fontSize: 14, fontWeight: "600", marginBottom: 12 }}>
-          Sacred Secretion Window
+          Next Transit Window
         </Text>
         <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 8 }}>
           <Text style={{ color: colors.gray[400], fontSize: 13 }}>Status</Text>

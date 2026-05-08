@@ -75,7 +75,7 @@ export default function SunSignScreen() {
           }}
         >
           <Text style={{ color: colors.deepDark, fontSize: 16, fontWeight: "700" }}>
-            Begin Your Journey
+            Begin Pausing
           </Text>
         </TouchableOpacity>
       </ScrollView>

@@ -1,6 +1,6 @@
 import { createMMKV } from "react-native-mmkv";
 
-export const storage = createMMKV({ id: "the-anointing" });
+export const storage = createMMKV({ id: "epoche" });
 
 export const StorageKeys = {
   ONBOARDING_COMPLETE: "onboarding_complete",

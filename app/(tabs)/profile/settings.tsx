@@ -72,7 +72,7 @@ export default function SettingsScreen() {
           <Info color={colors.mutedGold} size={20} />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ color: colors.warmOffWhite, fontSize: 15 }}>About</Text>
-            <Text style={{ color: colors.gray[400], fontSize: 12 }}>The Anointing v1.0.0</Text>
+            <Text style={{ color: colors.gray[400], fontSize: 12 }}>Époché v1.0.0</Text>
           </View>
         </View>
       </View>

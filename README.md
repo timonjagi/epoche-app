@@ -1,13 +1,16 @@
-# The Anointing
+# Époché
 
-A spiritual wellness app built with React Native + Expo that tracks astrological transits and sacred secretion windows based on your birth chart.
+*Pause when the cosmos does.*
 
-## Features
+A spiritual wellness app built with React Native + Expo that tracks astrological transits and helps you notice when the cosmos pauses — so you can too.
 
-- **Transit Tracking** — Monitor sacred secretion windows, planetary returns, retrogrades, eclipses, and lunar phases personalized to your birth chart
-- **Journal** — Track your experiences during celestial events with mood and energy levels
-- **Zodiac Explorer** — Learn about all 12 signs, their elements, qualities, and spiritual significance
-- **Auth** — Secure sign-in with email/password or Google via Supabase
+## The Name
+
+**Époché** (ἐποχή) carries three meanings that define the product:
+
+1. **Astronomical** — The point where a planet appears to stop before reversing direction (the "station" in retrograde). Mercury's retrograde station? That's an epoché. Your sacred secretion window? The moon pausing over your natal sun.
+2. **Philosophical** — The Pyrrhonist/Husserlian practice of suspending judgment to see clearly. We bracket assumptions to notice what's actually happening.
+3. **Practical** — Every notification this app sends is an epoché — a pause in your day. *The cosmos paused. You should too.*
 
 ## Tech Stack
 
@@ -15,22 +18,27 @@ A spiritual wellness app built with React Native + Expo that tracks astrological
 |-------|-----------|
 | Framework | Expo SDK 54 (React Native 0.81) |
 | Navigation | Expo Router v4 (file-based) |
-| Styling | NativeWind (Tailwind CSS for RN) — colors only |
-| State | Zustand + Supabase |
+| Styling | NativeWind v4 (Tailwind colors only) |
+| State | Zustand (client) + Supabase (server) |
 | Backend | Supabase (Auth, Postgres, Storage) |
+| Storage | MMKV (local persistence) |
 | Animations | Minimal (fade/slide only) |
 
 ## Getting Started
 
 ```bash
-# Install dependencies
+# Clone
+git clone https://github.com/timonjagi/epoche-app.git
+cd epoche-app
+
+# Install
 npm install
 
-# Set up environment
+# Configure
 cp .env.example .env
-# Add your Supabase URL and anon key to .env
+# Add your Supabase URL and anon key
 
-# Start development server
+# Run
 npx expo start
 ```
 
@@ -64,35 +72,35 @@ app/
 constants/
 └── theme.ts                 # Colors, transit types, zodiac data
 lib/
-├── supabase.ts              # Supabase client
+├── supabase.ts              # Supabase client (MMKV session storage)
 ├── storage.ts               # MMKV helpers
-└── astrology.ts             # Sun sign calc, moon phase, sacred secretion
+└── astrology.ts             # Sun sign calc, moon phase, transit windows
 stores/
 ├── authStore.ts             # Auth state + profile
 ├── journalStore.ts          # Journal entries CRUD
 └── settingsStore.ts         # Notification + theme settings
 types/
-└── index.ts                 # Zod-validated type definitions
+└── index.ts                 # TypeScript interfaces
 ```
 
 ## Transit Types
 
-The app generalizes astrological transits as trackable events:
+Époché generalizes astrological transits as trackable events. Each transit type represents a "pause" in the cosmos:
 
 | Transit | Description |
 |---------|------------|
-| Sacred Secretion | Moon transiting natal Sun (3-day window) |
-| Saturn Return | Saturn returns to natal position (~29.5yr) |
-| Jupiter Return | Jupiter returns to natal position (~12yr) |
-| Mercury Retrograde | Mercury appears retrograde (3x/year) |
-| Solar Eclipse | Eclipse near natal planets |
-| Lunar Eclipse | Lunar eclipse near natal planets |
+| Sacred Secretion | Moon transiting natal Sun — a 3-day spiritual renewal window |
+| Saturn Return | Saturn returns to natal position (~29.5yr) — major life chapter |
+| Jupiter Return | Jupiter returns to natal position (~12yr) — expansion and growth |
+| Mercury Retrograde | Mercury appears retrograde (3x/year) — reflect, don't initiate |
+| Solar Eclipse | Eclipse near natal planets — powerful new beginnings |
+| Lunar Eclipse | Lunar eclipse near natal planets — emotional revelations |
 | Full Moon | Illumination and culmination |
 | New Moon | New beginnings and intentions |
-| Venus Return | Venus returns to natal position |
-| Mars Return | Mars returns to natal position |
+| Venus Return | Venus returns to natal position — love and values activated |
+| Mars Return | Mars returns to natal position — drive and energy ignited |
 
-Users choose which transits to track, and the app calculates windows based on their birth data.
+Users choose which transits to track. The app calculates windows based on their birth data and sends epoché notifications — a pause in your day when the cosmos pauses too.
 
 ## Environment Variables
 

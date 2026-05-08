@@ -45,7 +45,7 @@ export default function NewJournalScreen() {
         energy_level: energyLevel,
         moon_phase: todayPhase,
         transit_type: null,
-        is_anointing_window: false,
+        is_transit_window: false,
         tags: [],
       });
       router.back();

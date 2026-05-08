@@ -15,12 +15,12 @@ const SOUND_OPTIONS = [
 export default function RemindersScreen() {
   const router = useRouter();
   const {
-    anointingReminders,
+    transitReminders,
     journalReminders,
     meditationReminders,
     reminderTime,
     soundType,
-    toggleAnointingReminders,
+    toggleTransitReminders,
     toggleJournalReminders,
     toggleMeditationReminders,
     setReminderTime,
@@ -40,7 +40,7 @@ export default function RemindersScreen() {
 
       <View style={{ backgroundColor: colors.cosmicIndigo, borderRadius: 16, overflow: "hidden", marginBottom: 20 }}>
         {[
-          { label: "Sacred Secretion Windows", value: anointingReminders, toggle: toggleAnointingReminders, desc: "3 days before and during your anointing window" },
+          { label: "Transit Windows", value: transitReminders, toggle: toggleTransitReminders, desc: "When a planetary transit is active in your chart" },
           { label: "Journal Reminders", value: journalReminders, toggle: toggleJournalReminders, desc: "Daily reminder to write in your journal" },
           { label: "Meditation Reminders", value: meditationReminders, toggle: toggleMeditationReminders, desc: "Gentle nudge for spiritual practice" },
         ].map((item) => (

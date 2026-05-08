@@ -51,7 +51,7 @@ export default function SignupScreen() {
             Create Account
           </Text>
           <Text style={{ fontSize: 14, color: colors.mutedGold, opacity: 0.7 }}>
-            Begin your celestial journey
+            Pause when the cosmos does
           </Text>
         </View>
 

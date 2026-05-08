@@ -39,10 +39,10 @@ export default function LoginScreen() {
         <View style={{ alignItems: "center", marginBottom: 48 }}>
           <Text style={{ fontSize: 36, color: colors.sacredGold, marginBottom: 8 }}>✦</Text>
           <Text style={{ fontSize: 28, fontWeight: "700", color: colors.warmOffWhite, marginBottom: 4 }}>
-            The Anointing
+            Époché
           </Text>
           <Text style={{ fontSize: 14, color: colors.mutedGold, opacity: 0.7 }}>
-            Track your celestial windows
+            Pause when the cosmos does
           </Text>
         </View>
 

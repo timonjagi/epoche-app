@@ -3,7 +3,7 @@ import { StorageKeys, getBoolean, setBoolean, getString, setString } from "@/lib
 
 interface SettingsState {
   theme: "dark" | "deeper";
-  anointingReminders: boolean;
+  transitReminders: boolean;
   journalReminders: boolean;
   meditationReminders: boolean;
   reminderTime: string;
@@ -12,7 +12,7 @@ interface SettingsState {
   soundType: string;
 
   setTheme: (theme: "dark" | "deeper") => void;
-  toggleAnointingReminders: () => void;
+  toggleTransitReminders: () => void;
   toggleJournalReminders: () => void;
   toggleMeditationReminders: () => void;
   setReminderTime: (time: string) => void;
@@ -23,7 +23,7 @@ interface SettingsState {
 
 export const useSettingsStore = create<SettingsState>((set, get) => ({
   theme: "dark",
-  anointingReminders: true,
+  transitReminders: true,
   journalReminders: false,
   meditationReminders: false,
   reminderTime: "08:00",
@@ -36,9 +36,9 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
     setString(StorageKeys.THEME, theme);
   },
 
-  toggleAnointingReminders: () => {
-    const val = !get().anointingReminders;
-    set({ anointingReminders: val });
+  toggleTransitReminders: () => {
+    const val = !get().transitReminders;
+    set({ transitReminders: val });
   },
 
   toggleJournalReminders: () => {

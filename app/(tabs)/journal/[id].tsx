@@ -30,7 +30,7 @@ export default function JournalDetailScreen() {
         })}
       </Text>
 
-      {entry.is_anointing_window && (
+      {entry.is_transit_window && (
         <View style={{ backgroundColor: colors.sacredGold + "20", borderRadius: 8, padding: 12, marginBottom: 16, flexDirection: "row", alignItems: "center" }}>
           <Text style={{ color: colors.sacredGold, fontSize: 13, fontWeight: "600" }}>
             ✦ Sacred Secretion Window

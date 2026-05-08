@@ -23,7 +23,7 @@ export interface JournalEntry {
   energy_level: number | null;
   moon_phase: string | null;
   transit_type: string | null;
-  is_anointing_window: boolean;
+  is_transit_window: boolean;
   tags: string[];
   created_at: string;
   updated_at: string;
@@ -46,7 +46,7 @@ export interface TransitWindow {
 export interface ReminderSettings {
   id: string;
   user_id: string;
-  anointing_reminders: boolean;
+  transit_reminders: boolean;
   journal_reminders: boolean;
   meditation_reminders: boolean;
   reminder_time: string;

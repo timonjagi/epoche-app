@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "The Anointing",
-    "slug": "the-anointing",
+    "name": "Époché",
+    "slug": "epoche",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "theanointing",
+    "scheme": "epoche",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.toruslabs.theanointing",
+      "bundleIdentifier": "com.toruslabs.epoche",
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "We need access to your photos to attach them to journal entries.",
         "NSCameraUsageDescription": "We need access to your camera to take photos for journal entries."
@@ -27,7 +27,7 @@
         "backgroundColor": "#0F0A1A"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.toruslabs.theanointing"
+      "package": "com.toruslabs.epoche"
     },
     "web": {
       "output": "static",

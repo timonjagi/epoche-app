@@ -66,7 +66,7 @@ export default function JournalListScreen() {
                 padding: 16,
                 marginBottom: 12,
                 borderLeftWidth: 3,
-                borderLeftColor: entry.is_anointing_window ? colors.sacredGold : colors.lighterIndigo,
+                borderLeftColor: entry.is_transit_window ? colors.sacredGold : colors.lighterIndigo,
               }}
             >
               <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 6 }}>
